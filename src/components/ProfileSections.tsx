@@ -171,7 +171,7 @@ function LabeledField({
   return (
     <div>
       <p
-        className="text-[10px] mb-1 font-bold"
+        className="text-sm mb-1 font-bold"
         style={{ color: labelColor, fontFamily: labelFont }}
       >
         {label}
@@ -707,9 +707,9 @@ export function IfSection({
       <Image
         src={template.characters[2]}
         alt=""
-        width={100}
-        height={100}
-        className="absolute -top-2 right-12 z-20 pointer-events-none object-contain"
+        width={70}
+        height={70}
+        className="absolute -top-4 right-2 z-20 pointer-events-none object-contain"
       />
       <Image
         src={template.characters[1]}
@@ -724,7 +724,7 @@ export function IfSection({
         width={200}
         height={50}
       />
-      <div className="space-y-2">
+      <div className="space-y-2 mt-2">
         <LabeledField
           label="もし100万円あったら？"
           value={profile.if_million_yen}
