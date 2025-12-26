@@ -17,6 +17,63 @@ import {
 import Footer from "@/components/Footer";
 import Loading from "@/components/Loading";
 
+// 画像をJPEGに変換する関数（HEIC対応＋圧縮）
+const convertImageToJpeg = (file: File): Promise<Blob> => {
+  return new Promise((resolve, reject) => {
+    const img = document.createElement("img");
+    const url = URL.createObjectURL(file);
+
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+
+      // 最大サイズを設定（アバターなので小さめでOK）
+      const maxSize = 800;
+      let { width, height } = img;
+
+      if (width > maxSize || height > maxSize) {
+        if (width > height) {
+          height = (height / width) * maxSize;
+          width = maxSize;
+        } else {
+          width = (width / height) * maxSize;
+          height = maxSize;
+        }
+      }
+
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        reject(new Error("Canvas context not available"));
+        return;
+      }
+
+      ctx.drawImage(img, 0, 0, width, height);
+
+      canvas.toBlob(
+        (blob) => {
+          if (blob) {
+            resolve(blob);
+          } else {
+            reject(new Error("Failed to convert image"));
+          }
+        },
+        "image/jpeg",
+        0.85
+      );
+    };
+
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error("Failed to load image"));
+    };
+
+    img.src = url;
+  });
+};
+
 export default function ProfileEditPage() {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -134,12 +191,18 @@ export default function ProfileEditPage() {
     const file = e.target.files?.[0];
     if (!file || !userId) return;
 
-    if (file.size > 2 * 1024 * 1024) {
-      setError("画像は2MB以下にしてください");
+    if (file.size > 10 * 1024 * 1024) {
+      setError("画像は10MB以下にしてください");
       return;
     }
 
-    if (!file.type.startsWith("image/")) {
+    // 拡張子でも判定（iPhoneのHEICはfile.typeが空になることがある）
+    const ext = file.name.split(".").pop()?.toLowerCase() || "";
+    const isImage =
+      file.type.startsWith("image/") ||
+      ["jpg", "jpeg", "png", "gif", "webp", "heic", "heif"].includes(ext);
+
+    if (!isImage) {
       setError("画像ファイルを選択してください");
       return;
     }
@@ -148,9 +211,11 @@ export default function ProfileEditPage() {
     setError("");
 
     try {
+      // 画像をJPEGに変換（HEIC対応＋圧縮）
+      const convertedFile = await convertImageToJpeg(file);
+
       const supabase = createClient();
-      const fileExt = file.name.split(".").pop();
-      const fileName = `${userId}-${Date.now()}.${fileExt}`;
+      const fileName = `${userId}-${Date.now()}.jpg`;
 
       if (formData.avatar_url) {
         const oldFileName = formData.avatar_url.split("/").pop();
@@ -161,7 +226,7 @@ export default function ProfileEditPage() {
 
       const { error: uploadError } = await supabase.storage
         .from("avatars")
-        .upload(fileName, file, {
+        .upload(fileName, convertedFile, {
           cacheControl: "3600",
           upsert: false,
         });
