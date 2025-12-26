@@ -124,7 +124,7 @@ export default function Home() {
             </div>
 
             {/* サンプルプレビュー */}
-            <div className="w-full max-w-sm mb-4">
+            <div className="w-full max-w-sm">
               <p
                 className="text-center font-bold mb-2 text-shadow-xs text-shadow-white"
                 style={{
@@ -137,7 +137,7 @@ export default function Home() {
                 <span className="blink">↓↓↓</span>
               </p>
               {/* サンプル画像スライド */}
-              <div className="relative w-48 h-64 mx-auto">
+              <div className="relative w-60 h-90 mx-auto">
                 {SAMPLE_IMAGES.map((src, index) => (
                   <Image
                     key={src}
