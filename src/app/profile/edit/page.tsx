@@ -15,6 +15,7 @@ import {
   IfSection,
 } from "@/components/ProfileSections";
 import Footer from "@/components/Footer";
+import Loading from "@/components/Loading";
 
 export default function ProfileEditPage() {
   const router = useRouter();
@@ -287,14 +288,7 @@ export default function ProfileEditPage() {
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="text-center bg-white/80 p-6 rounded-2xl">
-          <p className="text-lg">読み込み中...</p>
-          <p className="blink text-2xl">&#10024;</p>
-        </div>
-      </div>
-    );
+    return <Loading fullScreen />;
   }
 
   return (
@@ -425,6 +419,7 @@ export default function ProfileEditPage() {
                     style={{
                       borderColor: template.primaryColor,
                       fontFamily: INPUT_FONT,
+                      color: template.textColor,
                     }}
                     required
                   />

@@ -8,7 +8,7 @@ interface FooterProps {
 export default function Footer({ template }: FooterProps) {
   return (
     <div
-      className="text-center text-sm mt-4 space-y-1"
+      className="text-center text-sm mt-8 space-y-1"
       style={{ color: template.textColor, fontFamily: template.titleFont }}
     >
       <div className="flex justify-center gap-3">
