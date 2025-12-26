@@ -1,26 +1,1278 @@
 @import "tailwindcss";
 
+/* カスタムフォント - ユーザー入力用 */
+@font-face {
+  font-family: "HeiseiJyoji";
+  src: url("/HeiseijyojiFont.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-gradient-start: #ffb6c1;
+  --bg-gradient-end: #87ceeb;
+  --text-primary: #333;
+  --accent-pink: #ff69b4;
+  --accent-purple: #9370db;
+  --accent-yellow: #ffd700;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-retro-pink: #ff69b4;
+  --color-retro-purple: #9370db;
+  --color-retro-blue: #87ceeb;
+  --color-retro-yellow: #ffd700;
+  --color-retro-orange: #ffa500;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(
+    180deg,
+    var(--bg-gradient-start) 0%,
+    var(--bg-gradient-end) 100%
+  );
+  min-height: 100vh;
+  font-family: "MS PGothic", "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro",
+    "メイリオ", Meiryo, sans-serif;
+}
+
+/* レトロなギザギザ枠 */
+.retro-frame {
+  background: linear-gradient(135deg, #fffaf0 0%, #fff8dc 100%);
+  border: 3px solid #ff69b4;
+  box-shadow: 5px 5px 0 #9370db, inset 0 0 20px rgba(255, 182, 193, 0.3);
+  position: relative;
+}
+
+.retro-frame::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 5px,
+    rgba(255, 105, 180, 0.3) 5px,
+    rgba(255, 105, 180, 0.3) 10px
+  );
+  z-index: -1;
+  border-radius: 8px;
+}
+
+/* キラキラエフェクト */
+@keyframes sparkle {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+.sparkle {
+  animation: sparkle 1s ease-in-out infinite;
+}
+
+/* 点滅アニメーション */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: blink 0.8s ease-in-out infinite;
+}
+
+/* マーキー風スクロール */
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee {
+  animation: marquee 10s linear infinite;
+  white-space: nowrap;
+}
+
+/* キリ番演出用 */
+@keyframes flash {
+  0%,
+  50%,
+  100% {
+    background-color: transparent;
+  }
+  25%,
+  75% {
+    background-color: rgba(255, 215, 0, 0.5);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rainbow {
+  0% {
+    color: #ff0000;
+  }
+  16% {
+    color: #ff8800;
+  }
+  33% {
+    color: #ffff00;
+  }
+  50% {
+    color: #00ff00;
+  }
+  66% {
+    color: #0088ff;
+  }
+  83% {
+    color: #8800ff;
+  }
+  100% {
+    color: #ff0000;
+  }
+}
+
+@keyframes rainbow-bg {
+  0% {
+    background-color: #ff0000;
+  }
+  16% {
+    background-color: #ff8800;
+  }
+  33% {
+    background-color: #ffff00;
+  }
+  50% {
+    background-color: #00ff00;
+  }
+  66% {
+    background-color: #0088ff;
+  }
+  83% {
+    background-color: #8800ff;
+  }
+  100% {
+    background-color: #ff0000;
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-2px);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(2px);
+  }
+}
+
+.kiriban-flash {
+  animation: flash 0.5s ease-in-out 5;
+}
+
+.kiriban-bounce {
+  animation: bounce-in 0.8s ease-out;
+}
+
+.kiriban-shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+.rainbow-text {
+  animation: rainbow 2s linear infinite;
+}
+
+.rainbow-bg {
+  animation: rainbow-bg 3s linear infinite;
+}
+
+/* レトロなカウンター */
+.retro-counter {
+  background: linear-gradient(180deg, #2d2d2d 0%, #1a1a1a 100%);
+  border: 2px solid #444;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-family: "Courier New", monospace;
+  color: #00ff00;
+  text-shadow: 0 0 10px #00ff00;
+  letter-spacing: 4px;
+}
+
+/* アクセスカウンター */
+.access-counter {
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+  border: 3px ridge #4a4a6a;
+  border-radius: 4px;
+  padding: 4px 12px;
+  font-family: "Courier New", "Lucida Console", monospace;
+  font-weight: bold;
+  letter-spacing: 3px;
+}
+
+.access-counter-digit {
+  background: linear-gradient(180deg, #0f0f0f 0%, #2a2a2a 100%);
+  border: 1px inset #333;
+  color: #00ff00;
+  text-shadow: 0 0 8px #00ff00, 0 0 2px #00ff00;
+  padding: 2px 4px;
+  margin: 0 1px;
+  display: inline-block;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* レトロなボタン */
+.retro-button {
+  background: linear-gradient(180deg, #ffb6c1 0%, #ff69b4 100%);
+  border: 2px solid #ff1493;
+  border-radius: 8px;
+  padding: 8px 24px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 0 #9370db;
+  transition: all 0.1s;
+}
+
+.retro-button:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 #9370db;
+}
+
+.retro-button:active {
+  transform: translate(3px, 3px);
+  box-shadow: none;
+}
+
+/* レトロな入力フォーム */
+.retro-input {
+  background: #fffef0;
+  border: 2px solid var(--input-border-color, #ff69b4);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.retro-input:focus {
+  outline: none;
+  border-color: var(--input-focus-color, #9370db);
+  box-shadow: 0 0 8px var(--input-focus-shadow, rgba(147, 112, 219, 0.5));
+}
+
+/* セクションタイトル */
+.section-title {
+  background: linear-gradient(90deg, #ff69b4, #9370db);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* 装飾記号 */
+.deco-star::before {
+  content: "☆";
+}
+.deco-star::after {
+  content: "☆";
+}
+.deco-heart::before {
+  content: "♡";
+}
+.deco-heart::after {
+  content: "♡";
+}
+.deco-music::before {
+  content: "♪";
+}
+.deco-music::after {
+  content: "♪";
+}
+
+/* 平成風装飾ライン */
+.heisei-line {
+  height: 4px;
+  background: repeating-linear-gradient(
+    90deg,
+    #ff69b4 0px,
+    #ff69b4 10px,
+    #9370db 10px,
+    #9370db 20px,
+    #87ceeb 20px,
+    #87ceeb 30px
+  );
+}
+
+/* ギャル文字風 */
+.gal-text {
+  font-family: "MS PGothic", sans-serif;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* キラキラ星装飾 */
+.star-deco::before,
+.star-deco::after {
+  content: "☆ﾐ";
+  color: #ffd700;
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+/* GIF風アニメアイコン */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.bouncy-icon {
+  animation: bounce 0.6s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* Under construction風 */
+.under-construction {
+  background: repeating-linear-gradient(
+    45deg,
+    #ffd700,
+    #ffd700 10px,
+    #000 10px,
+    #000 20px
+  );
+  padding: 2px;
+}
+
+/* レトロなリンク */
+.retro-link {
+  color: #0000ff;
+  text-decoration: underline;
+}
+
+.retro-link:visited {
+  color: #800080;
+}
+
+.retro-link:hover {
+  color: #ff0000;
+}
+
+/* ピカピカ光る星 */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 5px #fff, 0 0 10px #ffd700;
+  }
+  50% {
+    opacity: 0.7;
+    text-shadow: 0 0 2px #fff;
+  }
+}
+
+.twinkle-star {
+  animation: twinkle 1s ease-in-out infinite;
+  color: #ffd700;
+}
+
+/* Welcome to my homepage風 */
+.welcome-text {
+  font-family: "Comic Sans MS", "Arial Rounded MT Bold", sans-serif;
+  background: linear-gradient(180deg, #ff69b4 0%, #ff1493 50%, #ff69b4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  text-shadow: none;
+  filter: drop-shadow(2px 2px 0 #9370db);
+}
+
+/* スクロールする星 */
+@keyframes shooting-star {
+  0% {
+    transform: translateX(-100%) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100vw) translateY(50px);
+    opacity: 0;
+  }
+}
+
+.shooting-star {
+  position: fixed;
+  top: 20%;
+  left: 0;
+  animation: shooting-star 3s linear infinite;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* 点線デコレーション */
+.dotted-deco {
+  border: 2px dotted #ff69b4;
+  padding: 8px;
+}
+
+/* ハートが飛ぶアニメーション */
+@keyframes float-heart {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.floating-heart {
+  animation: float-heart 2s ease-out forwards;
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Hit Counter みたいなスタイル */
+.hit-counter {
+  display: inline-flex;
+  background: #000;
+  padding: 3px;
+  border-radius: 3px;
+  gap: 2px;
+}
+
+.hit-counter-digit {
+  background: linear-gradient(180deg, #333 0%, #111 100%);
+  color: #ff0000;
+  font-family: "Digital-7", "Courier New", monospace;
+  font-size: 1.2rem;
+  padding: 2px 6px;
+  min-width: 20px;
+  text-align: center;
+  border: 1px solid #444;
+}
+
+/* お気に入り装飾 */
+.favorite-badge {
+  background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
+  border: 2px solid #ff8c00;
+  border-radius: 50%;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* New! アイコン */
+.new-icon {
+  background: #ff0000;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 1px 4px;
+  border-radius: 3px;
+  animation: blink 1s step-start infinite;
+  display: inline-block;
+  vertical-align: super;
+}
+
+/* 更新履歴風 */
+.update-log {
+  border-left: 3px solid #ff69b4;
+  padding-left: 8px;
+  font-size: 0.85rem;
+}
+
+.update-log-date {
+  color: #9370db;
+  font-weight: bold;
+}
+
+/* ========================================
+   プロフィール帳風デザイン
+   ======================================== */
+
+/* 手書き風タイトル */
+.profile-title {
+  font-family: "Klee One", "Zen Kurenaido", cursive;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* プロフィール帳のメインカード */
+.profile-card {
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 3px var(--card-border-color, #ff69b4);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 8px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-1, #ff69b4) 0%,
+    var(--accent-2, #ff69b4) 50%,
+    var(--accent-1, #ff69b4) 100%
+  );
+}
+
+/* タグ風ラベル */
+.tag-label {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  background: var(--tag-color, #ff69b4);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* 吹き出し風ラベル */
+.bubble-label {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: bold;
+  background: var(--bubble-bg, #fff);
+  border: 2px solid var(--bubble-border, #ff69b4);
+  color: var(--bubble-text, #ff69b4);
+  position: relative;
+}
+
+.bubble-label::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--bubble-border, #ff69b4);
+}
+
+/* ノートの罫線風入力欄 */
+.notebook-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px dashed var(--line-color, #ccc);
+  padding: 8px 4px;
+  font-size: 14px;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+
+.notebook-input:focus {
+  outline: none;
+  border-bottom-color: var(--line-focus-color, #ff69b4);
+  border-bottom-style: solid;
+}
+
+/* プロフ項目の行 */
+.profile-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--row-border, rgba(0, 0, 0, 0.1));
+}
+
+.profile-row:last-child {
+  border-bottom: none;
+}
+
+/* セクションヘッダー（リボン付き） */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 0;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.section-header::before,
+.section-header::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--line-color, #ff69b4),
+    transparent
+  );
+}
+
+.section-header-text {
+  padding: 6px 16px;
+  background: var(--header-bg, #ff69b4);
+  color: white;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* Yes or No スタイル */
+.yes-no-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.yes-no-question {
+  flex: 1;
+  font-size: 13px;
+}
+
+.yes-no-buttons {
+  display: flex;
+  gap: 4px;
+}
+
+.yes-no-btn {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  border: 2px solid;
+  transition: all 0.2s;
+}
+
+.yes-btn {
+  background: #ffebee;
+  border-color: #ff69b4;
+  color: #ff69b4;
+}
+
+.yes-btn.selected {
+  background: #ff69b4;
+  color: white;
+}
+
+.no-btn {
+  background: #e3f2fd;
+  border-color: #64b5f6;
+  color: #64b5f6;
+}
+
+.no-btn.selected {
+  background: #64b5f6;
+  color: white;
+}
+
+/* 装飾アイコン */
+.deco-icon {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+/* リボン装飾 */
+.ribbon {
+  position: absolute;
+  top: -5px;
+  right: 15px;
+  width: 30px;
+  height: 40px;
+  background: var(--ribbon-color, #ff69b4);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+}
+
+/* ハート型装飾 */
+.heart-deco {
+  color: #ff69b4;
+  font-size: 16px;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* 星型バッジ */
+.star-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #ffd700 0%, #ffb347 100%);
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  font-size: 12px;
+  font-weight: bold;
+  color: #8b4513;
+}
+
+/* グラデーション背景パターン */
+.gradient-bg-pink {
+  background: linear-gradient(180deg, #ffb6c1 0%, #ffc0cb 50%, #ffe4e9 100%);
+}
+
+.gradient-bg-blue {
+  background: linear-gradient(180deg, #87ceeb 0%, #add8e6 50%, #e0f7fa 100%);
+}
+
+.gradient-bg-green {
+  background: linear-gradient(180deg, #98fb98 0%, #90ee90 50%, #e8f5e9 100%);
+}
+
+.gradient-bg-yellow {
+  background: linear-gradient(180deg, #fff59d 0%, #fff176 50%, #fffde7 100%);
+}
+
+/* プロフィール帳の罫線背景 */
+.lined-bg {
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 27px,
+    var(--line-color, #e0e0e0) 27px,
+    var(--line-color, #e0e0e0) 28px
+  );
+  background-position: 0 20px;
+}
+
+/* ふきだしコメント */
+.speech-bubble {
+  position: relative;
+  background: var(--bubble-bg, #fff);
+  border: 2px solid var(--bubble-border, #ff69b4);
+  border-radius: 15px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+}
+
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 30px;
+  width: 16px;
+  height: 10px;
+  background: var(--bubble-bg, #fff);
+  border-bottom: 2px solid var(--bubble-border, #ff69b4);
+  border-right: 2px solid var(--bubble-border, #ff69b4);
+  transform: skewX(-20deg);
+}
+
+/* かわいい矢印 */
+.cute-arrow {
+  font-size: 12px;
+  color: var(--arrow-color, #ff69b4);
+}
+
+/* 枠付きボックス */
+.cute-box {
+  border: 3px solid var(--box-border, #ff69b4);
+  border-radius: 15px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  position: relative;
+}
+
+.cute-box::before {
+  content: attr(data-title);
+  position: absolute;
+  top: -12px;
+  left: 16px;
+  background: var(--box-border, #ff69b4);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* チェックボックス風 */
+.cute-checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.cute-checkbox-box {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--check-color, #ff69b4);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: all 0.2s;
+}
+
+.cute-checkbox-box.checked {
+  background: var(--check-color, #ff69b4);
+  color: white;
+}
+
+/* フッターデコ */
+.footer-deco {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: var(--footer-color, #888);
+}
+
+.footer-deco::before {
+  content: "━━━━━ ♡ ━━━━━";
+  display: block;
+  margin-bottom: 10px;
+  color: var(--deco-color, #ff69b4);
+}
+
+/* ========================================
+   平成女児デザイン強化
+   ======================================== */
+
+/* キラキラ背景パターン */
+.sparkle-bg {
+  background-image: radial-gradient(
+      circle at 20% 30%,
+      rgba(255, 215, 0, 0.3) 0%,
+      transparent 20%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 182, 193, 0.4) 0%,
+      transparent 15%
+    ),
+    radial-gradient(
+      circle at 40% 70%,
+      rgba(147, 112, 219, 0.3) 0%,
+      transparent 18%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(255, 105, 180, 0.3) 0%,
+      transparent 12%
+    );
+}
+
+/* プリクラ風フレーム */
+.purikura-frame {
+  border: 4px solid;
+  border-image: linear-gradient(
+      135deg,
+      #ff69b4 0%,
+      #ffb6c1 25%,
+      #9370db 50%,
+      #87ceeb 75%,
+      #ff69b4 100%
+    )
+    1;
+  padding: 3px;
+  background: white;
+}
+
+/* ラメっぽいキラキラ */
+@keyframes glitter {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+.glitter-star {
+  animation: glitter 1.5s ease-in-out infinite;
+  display: inline-block;
+}
+
+.glitter-star:nth-child(2n) {
+  animation-delay: 0.3s;
+}
+
+.glitter-star:nth-child(3n) {
+  animation-delay: 0.6s;
+}
+
+/* ハートが流れる背景 */
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.floating-hearts::before,
+.floating-hearts::after {
+  content: "♡";
+  position: fixed;
+  font-size: 20px;
+  animation: float-up 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.floating-hearts::before {
+  left: 10%;
+  color: rgba(255, 105, 180, 0.4);
+  animation-delay: 0s;
+}
+
+.floating-hearts::after {
+  left: 85%;
+  color: rgba(147, 112, 219, 0.4);
+  animation-delay: 4s;
+}
+
+/* 手書き風アンダーライン */
+.handwritten-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.handwritten-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--underline-color, #ff69b4) 10%,
+    var(--underline-color, #ff69b4) 90%,
+    transparent 100%
+  );
+  border-radius: 2px;
+  transform: skewX(-5deg);
+}
+
+/* マスキングテープ風 */
+.masking-tape {
+  position: relative;
+  padding: 8px 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 182, 193, 0.8) 0%,
+    rgba(255, 218, 233, 0.8) 100%
+  );
+  transform: rotate(-2deg);
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.masking-tape::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 2px,
+    rgba(255, 255, 255, 0.3) 2px,
+    rgba(255, 255, 255, 0.3) 4px
+  );
+}
+
+/* シール風デコレーション */
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background: linear-gradient(180deg, #fff 0%, #f8f8f8 100%);
+  border: 2px solid var(--sticker-color, #ff69b4);
+  border-radius: 50px;
+  box-shadow: 0 3px 0 var(--sticker-shadow, #ff1493),
+    0 4px 8px rgba(0, 0, 0, 0.15);
+  font-weight: bold;
+  transform: rotate(-1deg);
+  transition: transform 0.2s;
+}
+
+.sticker:hover {
+  transform: rotate(1deg) scale(1.05);
+}
+
+/* 星型クリップ風 */
+.star-clip {
+  position: relative;
+}
+
+.star-clip::before {
+  content: "★";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: var(--clip-color, #ffd700);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* デコ文字（影付き） */
+.deco-text {
+  font-weight: bold;
+  text-shadow: 1px 1px 0 var(--shadow-color-1, #fff),
+    2px 2px 0 var(--shadow-color-2, #ffb6c1),
+    3px 3px 0 var(--shadow-color-3, #ff69b4);
+}
+
+/* ポップなボーダー */
+.pop-border {
+  border: 3px solid transparent;
+  border-image: repeating-linear-gradient(
+      45deg,
+      #ff69b4 0 10px,
+      #ffb6c1 10px 20px,
+      #9370db 20px 30px,
+      #87ceeb 30px 40px
+    )
+    3;
+}
+
+/* ノート風罫線（ピンク） */
+.notebook-lines {
+  background-image: repeating-linear-gradient(
+    transparent,
+    transparent 27px,
+    rgba(255, 105, 180, 0.3) 27px,
+    rgba(255, 105, 180, 0.3) 28px
+  );
+  background-position: 0 12px;
+}
+
+/* 付箋風 */
+.sticky-note {
+  background: linear-gradient(180deg, #fffacd 0%, #fff8dc 100%);
+  padding: 12px 16px;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -20px 20px -20px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transform: rotate(1deg);
+}
+
+.sticky-note::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 20px;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, transparent 50%, rgba(0, 0, 0, 0.05) 50%);
+}
+
+/* キラキラ星デコ */
+.sparkle-deco::before,
+.sparkle-deco::after {
+  content: "✧";
+  font-size: 0.8em;
+  color: #ffd700;
+  animation: sparkle 1s ease-in-out infinite;
+}
+
+.sparkle-deco::before {
+  margin-right: 8px;
+}
+
+.sparkle-deco::after {
+  margin-left: 8px;
+  animation-delay: 0.5s;
+}
+
+/* 虹色グラデーションテキスト */
+.rainbow-gradient-text {
+  background: linear-gradient(
+    90deg,
+    #ff0000 0%,
+    #ff8800 16%,
+    #ffff00 33%,
+    #00ff00 50%,
+    #0088ff 66%,
+    #8800ff 83%,
+    #ff0000 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: rainbow-shift 3s linear infinite;
+}
+
+@keyframes rainbow-shift {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* ぷっくりハート */
+.puffy-heart {
+  display: inline-block;
+  color: #ff69b4;
+  text-shadow: 0 1px 0 #ff1493, 0 2px 0 #ff1493,
+    0 3px 5px rgba(255, 20, 147, 0.3);
+  transform: scale(1);
+  transition: transform 0.2s;
+}
+
+.puffy-heart:hover {
+  transform: scale(1.2);
+}
+
+/* ギャル文字風波線 */
+.wave-text {
+  display: inline-block;
+}
+
+.wave-text span {
+  display: inline-block;
+  animation: wave 0.5s ease-in-out infinite;
+}
+
+.wave-text span:nth-child(2n) {
+  animation-delay: 0.1s;
+}
+
+.wave-text span:nth-child(3n) {
+  animation-delay: 0.2s;
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* インラインテキストのキラキラ強調 */
+.inline-highlight {
+  background: linear-gradient(
+    180deg,
+    transparent 60%,
+    rgba(255, 215, 0, 0.3) 60%
+  );
+  padding: 0 4px;
+  border-radius: 2px;
+}
+
+/* レトロなバウンスアニメーション（テーマ選択用） */
+@keyframes retro-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.retro-bounce-text {
+  animation: retro-bounce 0.8s ease-in-out infinite;
+  display: inline-block;
+}
+
+.retro-bounce-text:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.retro-bounce-text:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.retro-bounce-text:nth-child(4) {
+  animation-delay: 0.3s;
 }
