@@ -459,7 +459,7 @@ export function QuestionsSection({
           placeholder=""
           editable={editable}
           onChange={(v) => onFieldChange?.("my_boom", v)}
-          width="w-28"
+          width="w-40"
           maxLength={TEXT_LIMITS.short}
         />
         <span>に</span>

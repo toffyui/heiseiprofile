@@ -20,14 +20,14 @@ export function ProfileLayout({ template, children }: ProfileLayoutProps) {
     <div className="min-h-screen bg-gray-100">
       {/* PC横幅制限 + 背景画像 */}
       <div
-        className="max-w-md mx-auto min-h-screen relative"
+        className="max-w-md mx-auto min-h-screen flex flex-col"
         style={{
           backgroundImage: `url(${template.background})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="py-6 mx-auto">{children}</div>
+        <div className="flex-1 py-6 mx-auto w-full">{children}</div>
       </div>
     </div>
   );

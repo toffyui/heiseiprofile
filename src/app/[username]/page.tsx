@@ -9,6 +9,7 @@ import VisitorCounter from "@/components/VisitorCounter";
 import KiribanCelebration from "@/components/KiribanCelebration";
 import Link from "next/link";
 import { ProfileLayout, textShadowStyle } from "@/components/ProfileLayout";
+import Footer from "@/components/Footer";
 import {
   BasicInfoSection,
   QuestionsSection,
@@ -144,7 +145,9 @@ export default function ProfilePage({ params }: ProfilePageProps) {
 
   return (
     <ProfileLayout template={template}>
-      {/* キリ番演出 */}
+      <div className="flex flex-col min-h-full">
+        <div className="flex-1">
+          {/* キリ番演出 */}
       {showKiriban && profile && (
         <KiribanCelebration
           count={visitorCount}
@@ -235,39 +238,43 @@ export default function ProfilePage({ params }: ProfilePageProps) {
             </div>
           </div>
         )}
-      </div>
-      {/* フッター */}
-      <div className="text-center" style={textShadowStyle}>
-        <div className="flex justify-center gap-4 mb-4">
-          <Link
-            href="/"
-            className="px-4 py-2 rounded-full text-sm font-bold shadow-md"
-            style={{
-              backgroundColor: template.primaryColor,
-              color: "#fff",
-              fontFamily: template.titleFont,
-            }}
-          >
-            TOP
-          </Link>
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="px-4 py-2 rounded-full text-sm font-bold border-2 bg-white/80"
-            style={{
-              borderColor: template.primaryColor,
-              color: template.primaryColor,
-              fontFamily: template.titleFont,
-            }}
-          >
-            &#9650; 上へ
-          </button>
         </div>
-        <p className="text-xs" style={{ color: template.textColor }}>
-          平成プロフィール
-        </p>
-        <p className="text-[10px]" style={{ color: `${template.textColor}80` }}>
-          &copy; {new Date().getFullYear()} HeiseiProfile
-        </p>
+        </div>
+
+        {/* フッター */}
+        <div className="text-center mt-auto px-6 pb-4" style={textShadowStyle}>
+          <div className="flex justify-center gap-4 mb-4">
+            <Link
+              href="/"
+              className="px-4 py-2 rounded-full text-sm font-bold shadow-md"
+              style={{
+                backgroundColor: template.primaryColor,
+                color: "#fff",
+                fontFamily: template.titleFont,
+              }}
+            >
+              TOP
+            </Link>
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="px-4 py-2 rounded-full text-sm font-bold border-2 bg-white/80"
+              style={{
+                borderColor: template.primaryColor,
+                color: template.primaryColor,
+                fontFamily: template.titleFont,
+              }}
+            >
+              &#9650; 上へ
+            </button>
+          </div>
+          <p
+            className="text-xs mb-2"
+            style={{ color: template.textColor, fontFamily: template.titleFont }}
+          >
+            ♡ 平成プロフィール ♡
+          </p>
+          <Footer template={template} />
+        </div>
       </div>
     </ProfileLayout>
   );

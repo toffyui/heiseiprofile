@@ -14,6 +14,7 @@ import {
   FavoritesSection,
   IfSection,
 } from "@/components/ProfileSections";
+import Footer from "@/components/Footer";
 
 export default function ProfileEditPage() {
   const router = useRouter();
@@ -298,7 +299,9 @@ export default function ProfileEditPage() {
 
   return (
     <ProfileLayout template={template}>
-      {/* テーマ選択の案内テキスト */}
+      <div className="flex flex-col min-h-full">
+        <div className="flex-1">
+          {/* テーマ選択の案内テキスト */}
       <div className="text-center mb-3">
         <p
           className="text-sm font-bold mb-1 text-shadow-xs text-shadow-white"
@@ -396,13 +399,13 @@ export default function ProfileEditPage() {
           {/* プロフURL */}
           <div className="mb-4">
             <p
-              className="text-xs mb-1 text-center"
+              className="text-sm mb-1 text-center font-bold"
               style={{
                 color: template.primaryColor,
                 fontFamily: template.titleFont,
               }}
             >
-              あなたのプロフURL
+              プロフURL
             </p>
             <div className="flex items-center justify-center gap-1">
               <span className="text-sm" style={{ color: template.textColor }}>
@@ -445,25 +448,31 @@ export default function ProfileEditPage() {
         </div>
       </form>
 
-      {/* フッター */}
-      <div className="flex gap-2 mt-2 justify-center">
-        <button
-          type="button"
-          onClick={handleLogout}
-          className="text-xs underline"
-          style={{
-            color: template.textColor,
-          }}
-        >
-          ログアウト
-        </button>
-        <Link
-          href="/"
-          className="text-xs underline"
-          style={{ color: template.textColor }}
-        >
-          TOPへ戻る
-        </Link>
+        </div>
+
+        {/* フッター */}
+        <div className="mt-auto px-6 pb-4">
+          <div className="flex gap-2 mt-2 justify-center">
+            <button
+              type="button"
+              onClick={handleLogout}
+              className="text-xs underline"
+              style={{
+                color: template.textColor,
+              }}
+            >
+              ログアウト
+            </button>
+            <Link
+              href="/"
+              className="text-xs underline"
+              style={{ color: template.textColor }}
+            >
+              TOPへ戻る
+            </Link>
+          </div>
+          <Footer template={template} />
+        </div>
       </div>
     </ProfileLayout>
   );
