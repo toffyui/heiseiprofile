@@ -412,7 +412,7 @@ export default function ProfileEditPage() {
                     className="text-sm"
                     style={{ color: template.textColor }}
                   >
-                    heiseiprofile.com/
+                    heiseiprofile.app/
                   </span>
                   <input
                     type="text"
