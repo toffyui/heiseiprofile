@@ -9,9 +9,9 @@ import Footer from "@/components/Footer";
 
 // サンプル画像
 const SAMPLE_IMAGES = [
-  "/samples/sample1.png",
-  "/samples/sample2.png",
-  "/samples/sample3.png",
+  "/samples/sample1.webp",
+  "/samples/sample2.webp",
+  "/samples/sample3.webp",
 ];
 
 export default function Home() {
@@ -109,7 +109,7 @@ export default function Home() {
                 }}
               >
                 <span className="blink">☆</span>
-                平成プロフィール
+                平成ぷろふぃーる
                 <span className="blink">☆</span>
               </h1>
               <p
@@ -231,7 +231,7 @@ export default function Home() {
                     fontFamily: template.titleFont,
                   }}
                 >
-                  プロフを編集する
+                  ﾌﾟﾛﾌをへんしゅう
                 </Link>
               ) : (
                 <button

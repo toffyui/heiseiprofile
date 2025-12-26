@@ -32,7 +32,7 @@ export default function Loading({ fullScreen = false }: LoadingProps) {
 
   if (fullScreen) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="bg-white/80 p-6 rounded-2xl">{content}</div>
       </div>
     );

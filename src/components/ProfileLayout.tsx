@@ -17,10 +17,10 @@ export const textShadowStyle = {
 // メインレイアウト - 背景とコンテナ
 export function ProfileLayout({ template, children }: ProfileLayoutProps) {
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen relative">
       {/* PC横幅制限 + 背景画像 */}
       <div
-        className="max-w-md mx-auto min-h-screen flex flex-col"
+        className="max-w-md mx-auto min-h-screen flex flex-col relative z-10"
         style={{
           backgroundImage: `url(${template.background})`,
           backgroundSize: "cover",
@@ -80,7 +80,7 @@ export function AvatarWithFlame({
       </div>
       {/* アバター */}
       <div
-        className={`w-full h-full rounded-lg overflow-hidden relative z-0 bg-gray-100 ${
+        className={`w-full h-full rounded-lg overflow-hidden relative z-0 ${
           onClick ? "cursor-pointer hover:opacity-80 transition-opacity" : ""
         }`}
       >

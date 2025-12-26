@@ -17,17 +17,7 @@
   font-display: swap;
 }
 
-:root {
-  --bg-gradient-start: #ffb6c1;
-  --bg-gradient-end: #87ceeb;
-}
-
 body {
-  background: linear-gradient(
-    180deg,
-    var(--bg-gradient-start) 0%,
-    var(--bg-gradient-end) 100%
-  );
   min-height: 100vh;
   font-family: "MS PGothic", "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro",
     "メイリオ", Meiryo, sans-serif;
@@ -178,4 +168,29 @@ body {
 
 .retro-bounce-text:nth-child(4) {
   animation-delay: 0.3s;
+}
+
+/* ========================================
+   PC背景パターン（斜め文字）- HeiseiJyojiフォント使用
+   ======================================== */
+
+.pc-background-pattern {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.pc-background-pattern-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-family: "HeiseiJyoji", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.8;
+  text-align: center;
+  transform: translate(-50%, -50%) rotate(-25deg);
 }

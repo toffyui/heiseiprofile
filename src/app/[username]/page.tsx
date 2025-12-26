@@ -101,7 +101,7 @@ export default function ProfilePage({ params }: ProfilePageProps) {
 
   if (notFound) {
     return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <div className="min-h-screen flex items-center justify-center p-4">
         <div
           className="max-w-sm text-center p-6 rounded-2xl shadow-lg"
           style={{ backgroundColor: "rgba(255,255,255,0.95)" }}
@@ -234,28 +234,29 @@ export default function ProfilePage({ params }: ProfilePageProps) {
         {/* フッター */}
         <div className="text-center mt-auto px-6 pb-4">
           <div className="flex justify-center gap-3 mb-4 flex-wrap">
-            <Link
-              href="/"
-              className="px-4 py-2 rounded-full text-sm font-bold shadow-md"
-              style={{
-                backgroundColor: template.primaryColor,
-                color: "#fff",
-                fontFamily: template.titleFont,
-              }}
-            >
-              TOP
-            </Link>
-            {isOwner && (
+            {isOwner ? (
               <Link
                 href="/profile/edit"
                 className="px-4 py-2 rounded-full text-sm font-bold shadow-md"
                 style={{
-                  backgroundColor: template.secondaryColor,
+                  backgroundColor: template.primaryColor,
                   color: "#fff",
                   fontFamily: template.titleFont,
                 }}
               >
-                編集する
+                ﾌﾟﾛﾌをへんしゅう
+              </Link>
+            ) : (
+              <Link
+                href="/"
+                className="px-4 py-2 rounded-full text-sm font-bold shadow-md"
+                style={{
+                  backgroundColor: template.primaryColor,
+                  color: "#fff",
+                  fontFamily: template.titleFont,
+                }}
+              >
+                ﾌﾟﾛﾌをつくる
               </Link>
             )}
             <button

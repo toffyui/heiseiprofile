@@ -47,7 +47,7 @@ export const TEMPLATES: Template[] = [
       if: "/templates/candy/texts/if.webp",
     },
     primaryColor: "#D269E6",
-    secondaryColor: "#FFDC49",
+    secondaryColor: "#FFDB41",
     textColor: "#4a4a4a",
     inputTextColor: "#4a4a4a",
     titleFont: '"Zen Maru Gothic", "Klee One", "Zen Kurenaido", sans-serif',

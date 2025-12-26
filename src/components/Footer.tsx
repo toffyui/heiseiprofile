@@ -19,7 +19,7 @@ export default function Footer({ template }: FooterProps) {
           利用規約
         </Link>
       </div>
-      <p>&copy; 2025 平成プロフィール All Rights Reserved.</p>
+      <p>&copy; 2025 平成ぷろふぃーる All Rights Reserved.</p>
       <p className="text-xs opacity-70">
         Font:{" "}
         <a
@@ -29,8 +29,20 @@ export default function Footer({ template }: FooterProps) {
           className="underline hover:opacity-70"
         >
           素材屋405番地
-        </a>
-        {" "}(みきゆFont)
+        </a>{" "}
+        (みきゆFont)
+      </p>
+      <p className="text-xs opacity-70">
+        Font:{" "}
+        <a
+          href="https://booth.pm/ja/items/7746367"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:opacity-70"
+        >
+          はらだん Kawaii Labo
+        </a>{" "}
+        (平成女児★ふぉんと)
       </p>
     </div>
   );

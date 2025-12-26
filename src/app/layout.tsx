@@ -1,10 +1,24 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import BackgroundPattern from "@/components/BackgroundPattern";
 
 export const metadata: Metadata = {
-  title: "平成プロフィール - 平成風Webアプリ",
-  description:
-    "平成女児懐かしのプロフィール帳が現代に復活！プロフィールを作って友達に見せよう☆",
+  title: "平成ぷろふぃーる",
+  description: "平成時代の懐かしﾌﾟﾛﾌ帳を簡単に作っちゃお★",
+  icons: {
+    icon: "/favicon.png",
+  },
+  openGraph: {
+    title: "平成ぷろふぃーる",
+    description: "平成時代の懐かしﾌﾟﾛﾌ帳を簡単に作っちゃお★",
+    images: ["/OGP.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "平成ぷろふぃーる",
+    description: "平成時代の懐かしﾌﾟﾛﾌ帳を簡単に作っちゃお★",
+    images: ["/OGP.jpg"],
+  },
 };
 
 export default function RootLayout({
@@ -20,7 +34,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <BackgroundPattern />
+        {children}
+      </body>
     </html>
   );
 }
