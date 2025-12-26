@@ -36,17 +36,17 @@ export default function KiribanCelebration({ count, profileId, onClose }: Kiriba
     }
   };
 
-  // 派手なエフェクトのためのスタイル
+  // 派手なエフェクトのためのスタイル（平成女児ピンクテーマ）
   const getBgStyle = () => {
     switch (kiribanType) {
       case "lucky7":
-        return "bg-gradient-to-b from-yellow-400 via-orange-400 to-red-400";
+        return "bg-gradient-to-b from-pink-400 via-rose-500 to-fuchsia-500";
       case "zorome":
-        return "bg-gradient-to-b from-pink-400 via-purple-400 to-blue-400";
+        return "bg-gradient-to-b from-rose-400 via-pink-500 to-purple-400";
       case "thousand":
-        return "bg-gradient-to-b from-gold-400 via-yellow-300 to-orange-400";
+        return "bg-gradient-to-b from-fuchsia-400 via-pink-400 to-rose-500";
       default:
-        return "bg-gradient-to-b from-pink-300 via-purple-300 to-blue-300";
+        return "bg-gradient-to-b from-pink-300 via-rose-400 to-pink-500";
     }
   };
 
@@ -80,7 +80,7 @@ export default function KiribanCelebration({ count, profileId, onClose }: Kiriba
                 type="text"
                 value={visitorName}
                 onChange={(e) => setVisitorName(e.target.value)}
-                className="w-full px-3 py-2 rounded text-gray-800 text-center"
+                className="w-full px-3 py-2 rounded text-gray-800 text-center bg-white"
                 placeholder="あなたの名前"
                 maxLength={20}
               />

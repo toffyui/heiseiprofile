@@ -59,7 +59,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen">
       {/* 平成女児風背景 */}
       <div
         className="max-w-md mx-auto min-h-screen flex flex-col relative overflow-hidden"
@@ -102,7 +102,7 @@ export default function Home() {
             {/* タイトル */}
             <div className="text-center mb-4">
               <h1
-                className="text-xl font-bold mb-1 text-shadow-xs text-shadow-white"
+                className="text-2xl font-bold mb-1 text-shadow-xs text-shadow-white"
                 style={{
                   color: template.primaryColor,
                   fontFamily: template.titleFont,
@@ -126,14 +126,15 @@ export default function Home() {
             {/* サンプルプレビュー */}
             <div className="w-full max-w-sm mb-4">
               <p
-                className="text-center text-sm font-bold mb-2 text-shadow-xs text-shadow-white"
+                className="text-center font-bold mb-2 text-shadow-xs text-shadow-white"
                 style={{
                   color: template.primaryColor,
                   fontFamily: template.titleFont,
                 }}
               >
+                <span className="blink">↓↓↓</span>
                 こんな感じのﾌﾟﾛﾌが作れちゃう
-                <span className="blink">★</span>
+                <span className="blink">↓↓↓</span>
               </p>
               {/* サンプル画像スライド */}
               <div className="relative w-48 h-64 mx-auto">
@@ -154,15 +155,6 @@ export default function Home() {
             {/* 説明コンテンツ */}
             <div className="rounded-2xl p-4 w-full max-w-sm">
               <div className="text-center mb-3">
-                <p
-                  className="text-base font-bold mb-1"
-                  style={{
-                    color: template.primaryColor,
-                    fontFamily: template.titleFont,
-                  }}
-                >
-                  ♪ ようこそ ♪
-                </p>
                 <p
                   className="text-sm leading-relaxed"
                   style={{
