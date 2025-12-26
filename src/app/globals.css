@@ -9,6 +9,14 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Miyu";
+  src: url("/mikiyu-newpenji-p.ttf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg-gradient-start: #ffb6c1;
   --bg-gradient-end: #87ceeb;
@@ -23,6 +31,7 @@ body {
   min-height: 100vh;
   font-family: "MS PGothic", "ヒラギノ角ゴ Pro", "Hiragino Kaku Gothic Pro",
     "メイリオ", Meiryo, sans-serif;
+  color: #353535;
 }
 
 /* ========================================

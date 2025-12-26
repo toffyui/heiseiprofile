@@ -95,7 +95,7 @@ export default function Home() {
               <span className="blink">☆</span>
             </h1>
             <p
-              className="text-xs"
+              className="text-sm"
               style={{
                 color: template.textColor,
                 fontFamily: template.titleFont,
@@ -120,9 +120,7 @@ export default function Home() {
           </div>
 
           {/* メインコンテンツ */}
-          <div
-            className="rounded-2xl p-4 w-full max-w-sm"
-          >
+          <div className="rounded-2xl p-4 w-full max-w-sm">
             <div className="text-center mb-3">
               <p
                 className="text-base font-bold mb-1"
@@ -134,7 +132,7 @@ export default function Home() {
                 ♪ ようこそ ♪
               </p>
               <p
-                className="text-xs leading-relaxed"
+                className="text-sm leading-relaxed"
                 style={{
                   color: template.textColor,
                   fontFamily: template.titleFont,
@@ -152,7 +150,7 @@ export default function Home() {
             />
 
             {/* 機能紹介 */}
-            <div className="text-xs mb-3">
+            <div className="text-sm mb-3">
               <p
                 className="font-bold text-center mb-1"
                 style={{
@@ -247,7 +245,7 @@ export default function Home() {
             className="absolute -bottom-2 left-4 pointer-events-none object-contain"
           />
           <p
-            className="text-center text-xs mb-1"
+            className="text-center text-sm mb-1"
             style={{
               color: template.textColor,
               fontFamily: template.titleFont,
@@ -256,7 +254,7 @@ export default function Home() {
             ♡ 平成プロフィール ♡
           </p>
           <p
-            className="text-center text-xs sparkle mb-2"
+            className="text-center text-sm sparkle mb-2"
             style={{
               color: template.textColor,
               fontFamily: template.titleFont,

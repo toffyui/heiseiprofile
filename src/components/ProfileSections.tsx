@@ -75,6 +75,7 @@ function InlineField({
   editable,
   onChange,
   width = "w-20",
+  inputTextColor,
   maxLength,
 }: {
   value?: string | null;
@@ -82,6 +83,7 @@ function InlineField({
   editable?: boolean;
   onChange?: (value: string) => void;
   width?: string;
+  inputTextColor?: string;
   maxLength?: number;
 }) {
   return (
@@ -92,7 +94,7 @@ function InlineField({
       placeholder={editable ? placeholder : ""}
       disabled={!editable}
       className={`${width} px-2 py-1 mx-1 text-center bg-gray-50 rounded-full shadow-sm border-0 focus:outline-none disabled:opacity-100 disabled:cursor-default`}
-      style={{ fontFamily: INPUT_FONT }}
+      style={{ fontFamily: INPUT_FONT, color: inputTextColor }}
       maxLength={maxLength}
     />
   );
@@ -104,12 +106,14 @@ function InlineSelect({
   placeholder,
   options,
   editable,
+  inputTextColor,
   onChange,
 }: {
   value?: string | null;
   placeholder: string;
   options: readonly string[];
   editable?: boolean;
+  inputTextColor?: string;
   onChange?: (value: string) => void;
 }) {
   return (
@@ -118,7 +122,7 @@ function InlineSelect({
       onChange={(e) => onChange?.(e.target.value)}
       disabled={!editable}
       className="px-2 py-1 mx-1 text-center bg-gray-50 rounded-full shadow-sm border-0 focus:outline-none appearance-none disabled:opacity-100 disabled:cursor-default"
-      style={{ fontFamily: INPUT_FONT }}
+      style={{ fontFamily: INPUT_FONT, color: inputTextColor }}
     >
       <option value="">{placeholder}</option>
       {options.map((opt) => (
@@ -143,7 +147,7 @@ function FieldLabel({
   font: string;
 }) {
   return (
-    <p className="text-xs" style={{ color, fontFamily: font }}>
+    <p className="text-sm" style={{ color, fontFamily: font }}>
       {editable ? "★" : ""}
       {label}
     </p>
@@ -182,7 +186,7 @@ function LabeledField({
         placeholder={""}
         rows={3}
         disabled={!editable}
-        className="w-full p-3 text-xs bg-gray-50 rounded-lg border focus:outline-none disabled:opacity-100 disabled:cursor-default"
+        className="w-full p-3 text-sm bg-gray-50 rounded-lg border focus:outline-none disabled:opacity-100 disabled:cursor-default"
         style={{ fontFamily: INPUT_FONT, borderColor: labelColor }}
         maxLength={maxLength}
       />
@@ -344,6 +348,7 @@ export function QuestionsSection({
           onChange={(v) => onFieldChange?.("birth_year", v)}
           width="w-16"
           maxLength={4}
+          inputTextColor={template.inputTextColor}
         />
         <span>年</span>
         <InlineField
@@ -353,6 +358,7 @@ export function QuestionsSection({
           onChange={(v) => onFieldChange?.("birth_month", v)}
           width="w-10"
           maxLength={2}
+          inputTextColor={template.inputTextColor}
         />
         <span>月</span>
         <InlineField
@@ -362,6 +368,7 @@ export function QuestionsSection({
           onChange={(v) => onFieldChange?.("birth_day", v)}
           width="w-10"
           maxLength={2}
+          inputTextColor={template.inputTextColor}
         />
         <span>日</span>
         <span>生</span>
@@ -378,6 +385,7 @@ export function QuestionsSection({
           options={ZODIAC_SIGNS}
           editable={editable}
           onChange={(v) => onFieldChange?.("zodiac", v)}
+          inputTextColor={template.inputTextColor}
         />
         <span>座</span>
         <span>だ</span>
@@ -394,6 +402,7 @@ export function QuestionsSection({
           options={BLOOD_TYPES}
           editable={editable}
           onChange={(v) => onFieldChange?.("blood_type", v)}
+          inputTextColor={template.inputTextColor}
         />
         <span>型</span>
         <span>な</span>
@@ -417,6 +426,7 @@ export function QuestionsSection({
           onChange={(v) => onFieldChange?.("personality", v)}
           width="w-32"
           maxLength={TEXT_LIMITS.medium}
+          inputTextColor={template.inputTextColor}
         />
         <span>な</span>
         <span>性</span>
@@ -443,6 +453,7 @@ export function QuestionsSection({
           onChange={(v) => onFieldChange?.("hobby", v)}
           width="w-42"
           maxLength={TEXT_LIMITS.medium}
+          inputTextColor={template.inputTextColor}
         />
         <span>な</span>
         <span>ん</span>
@@ -461,6 +472,7 @@ export function QuestionsSection({
           onChange={(v) => onFieldChange?.("my_boom", v)}
           width="w-40"
           maxLength={TEXT_LIMITS.short}
+          inputTextColor={template.inputTextColor}
         />
         <span>に</span>
         <span>ハ</span>
@@ -485,6 +497,7 @@ export function QuestionsSection({
           onChange={(v) => onFieldChange?.("favorite_food", v)}
           width="w-20"
           maxLength={TEXT_LIMITS.short}
+          inputTextColor={template.inputTextColor}
         />
         <span>が</span>
         <span>ス</span>
@@ -500,6 +513,7 @@ export function QuestionsSection({
           onChange={(v) => onFieldChange?.("disliked_food", v)}
           width="w-20"
           maxLength={TEXT_LIMITS.short}
+          inputTextColor={template.inputTextColor}
         />
         <span>は</span>
         <span>苦</span>
@@ -531,6 +545,7 @@ export function QuestionsSection({
           onChange={(v) => onFieldChange?.("treasure", v)}
           width="w-32"
           maxLength={TEXT_LIMITS.medium}
+          inputTextColor={template.inputTextColor}
         />
         <span>で</span>
         <span>、</span>
@@ -555,6 +570,7 @@ export function QuestionsSection({
           onChange={(v) => onFieldChange?.("happiest_moment", v)}
           width="w-42"
           maxLength={TEXT_LIMITS.medium}
+          inputTextColor={template.inputTextColor}
         />
         <span>か</span>
         <span>な</span>
@@ -576,6 +592,7 @@ export function QuestionsSection({
           onChange={(v) => onFieldChange?.("dream", v)}
           width="w-40"
           maxLength={TEXT_LIMITS.medium}
+          inputTextColor={template.inputTextColor}
         />
         <span>だ</span>
         <span>よ</span>
@@ -598,6 +615,7 @@ export function QuestionsSection({
           onChange={(v) => onFieldChange?.("future_self", v)}
           width="w-52"
           maxLength={TEXT_LIMITS.extraLong}
+          inputTextColor={template.inputTextColor}
         />
       </p>
       <p className="flex flex-wrap items-center gap-y-2">
@@ -684,7 +702,7 @@ export function FavoritesSection({
               disabled={!editable}
               rows={3}
               maxLength={TEXT_LIMITS.medium}
-              className="relative z-10 w-20 mt-2 p-1 text-xs text-center bg-transparent border-0 resize-none focus:outline-none disabled:opacity-100 disabled:cursor-default"
+              className="relative z-10 w-20 leading-tight mt-3 p-1 text-xs text-center bg-transparent border-0 resize-none focus:outline-none disabled:opacity-100 disabled:cursor-default"
               style={{ fontFamily: INPUT_FONT }}
             />
           </div>

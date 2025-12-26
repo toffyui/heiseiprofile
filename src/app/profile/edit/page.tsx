@@ -302,152 +302,156 @@ export default function ProfileEditPage() {
       <div className="flex flex-col min-h-full">
         <div className="flex-1">
           {/* テーマ選択の案内テキスト */}
-      <div className="text-center mb-3">
-        <p
-          className="text-sm font-bold mb-1 text-shadow-xs text-shadow-white"
-          style={{
-            color: template.primaryColor,
-            fontFamily: template.titleFont,
-          }}
-        >
-          <span className="retro-bounce-text">☆</span>
-          <span className="retro-bounce-text">テ</span>
-          <span className="retro-bounce-text">ー</span>
-          <span className="retro-bounce-text">マ</span>
-          <span className="retro-bounce-text">を</span>
-          <span className="retro-bounce-text">え</span>
-          <span className="retro-bounce-text">ら</span>
-          <span className="retro-bounce-text">ぶ</span>
-          <span className="retro-bounce-text">☆</span>
-        </p>
-        <p
-          className="text-lg blink text-shadow-xs text-shadow-white"
-          style={{
-            color: template.secondaryColor,
-            fontFamily: template.titleFont,
-          }}
-        >
-          ↓↓↓(o^∀^o)↓↓↓
-        </p>
-      </div>
-
-      {/* テンプレート選択 */}
-      <div className="flex justify-center gap-4 mb-4">
-        {TEMPLATES.map((t) => (
-          <button
-            key={t.id}
-            type="button"
-            onClick={() => handleFieldChange("template_id", t.id)}
-            className={`relative p-2 rounded-full transition-all ${
-              formData.template_id === t.id ? "bg-white scale-110" : ""
-            }`}
-          >
-            <Image
-              src={t.characters[0]}
-              alt={t.name}
-              width={40}
-              height={40}
-              className="rounded-lg object-contain"
-              style={{ width: 40, height: 40 }}
-            />
-          </button>
-        ))}
-      </div>
-      <form onSubmit={handleSubmit}>
-        {/* hidden file input */}
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/*"
-          onChange={handleAvatarChange}
-          className="hidden"
-        />
-        {/* 基本情報カード */}
-        <BasicInfoSection
-          template={template}
-          profile={formData}
-          editable={true}
-          onFieldChange={handleFieldChange}
-          onAvatarClick={handleAvatarClick}
-          uploadingAvatar={uploadingAvatar}
-        />
-        <div className="px-6">
-          {/* 穴埋め部分 */}
-          <QuestionsSection
-            template={template}
-            profile={formData}
-            editable={true}
-            onFieldChange={handleFieldChange}
-          />
-
-          {/* 好きなもの♡コーナー */}
-          <FavoritesSection
-            template={template}
-            profile={formData}
-            editable={true}
-            onFieldChange={handleFieldChange}
-          />
-
-          {/* もしもコーナー */}
-          <IfSection
-            template={template}
-            profile={formData}
-            editable={true}
-            onFieldChange={handleFieldChange}
-          />
-
-          {/* プロフURL */}
-          <div className="mb-4">
+          <div className="text-center mb-3">
             <p
-              className="text-sm mb-1 text-center font-bold"
+              className="text-sm font-bold mb-1 text-shadow-xs text-shadow-white"
               style={{
                 color: template.primaryColor,
                 fontFamily: template.titleFont,
               }}
             >
-              プロフURL
+              <span className="retro-bounce-text">☆</span>
+              <span className="retro-bounce-text">テ</span>
+              <span className="retro-bounce-text">ー</span>
+              <span className="retro-bounce-text">マ</span>
+              <span className="retro-bounce-text">を</span>
+              <span className="retro-bounce-text">え</span>
+              <span className="retro-bounce-text">ら</span>
+              <span className="retro-bounce-text">ぶ</span>
+              <span className="retro-bounce-text">☆</span>
             </p>
-            <div className="flex items-center justify-center gap-1">
-              <span className="text-sm" style={{ color: template.textColor }}>
-                heiseiprofile.com/
-              </span>
-              <input
-                type="text"
-                value={formData.username || ""}
-                onChange={(e) => handleFieldChange("username", e.target.value)}
-                placeholder="username"
-                className="w-32 px-2 py-1 text-sm text-center border-b-2 border-dashed bg-transparent focus:outline-none"
-                style={{
-                  borderColor: template.primaryColor,
-                  fontFamily: INPUT_FONT,
-                }}
-                required
-              />
-            </div>
+            <p
+              className="text-lg blink text-shadow-xs text-shadow-white"
+              style={{
+                color: template.secondaryColor,
+                fontFamily: template.titleFont,
+              }}
+            >
+              ↓↓↓(o^∀^o)↓↓↓
+            </p>
           </div>
 
-          {/* エラーメッセージ */}
-          {error && (
-            <div className="text-sm text-center p-3 mb-4 rounded-xl bg-red-100 text-red-600 border-2 border-red-300">
-              {error}
+          {/* テンプレート選択 */}
+          <div className="flex justify-center gap-4 mb-4">
+            {TEMPLATES.map((t) => (
+              <button
+                key={t.id}
+                type="button"
+                onClick={() => handleFieldChange("template_id", t.id)}
+                className={`relative p-2 rounded-full transition-all ${
+                  formData.template_id === t.id ? "bg-white scale-110" : ""
+                }`}
+              >
+                <Image
+                  src={t.characters[0]}
+                  alt={t.name}
+                  width={40}
+                  height={40}
+                  className="rounded-lg object-contain"
+                  style={{ width: 40, height: 40 }}
+                />
+              </button>
+            ))}
+          </div>
+          <form onSubmit={handleSubmit}>
+            {/* hidden file input */}
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleAvatarChange}
+              className="hidden"
+            />
+            {/* 基本情報カード */}
+            <BasicInfoSection
+              template={template}
+              profile={formData}
+              editable={true}
+              onFieldChange={handleFieldChange}
+              onAvatarClick={handleAvatarClick}
+              uploadingAvatar={uploadingAvatar}
+            />
+            <div className="px-6">
+              {/* 穴埋め部分 */}
+              <QuestionsSection
+                template={template}
+                profile={formData}
+                editable={true}
+                onFieldChange={handleFieldChange}
+              />
+
+              {/* 好きなもの♡コーナー */}
+              <FavoritesSection
+                template={template}
+                profile={formData}
+                editable={true}
+                onFieldChange={handleFieldChange}
+              />
+
+              {/* もしもコーナー */}
+              <IfSection
+                template={template}
+                profile={formData}
+                editable={true}
+                onFieldChange={handleFieldChange}
+              />
+
+              {/* プロフURL */}
+              <div className="mb-4">
+                <p
+                  className="text-sm mb-1 text-center font-bold"
+                  style={{
+                    color: template.primaryColor,
+                    fontFamily: template.titleFont,
+                  }}
+                >
+                  プロフURL
+                </p>
+                <div className="flex items-center justify-center gap-1">
+                  <span
+                    className="text-sm"
+                    style={{ color: template.textColor }}
+                  >
+                    heiseiprofile.com/
+                  </span>
+                  <input
+                    type="text"
+                    value={formData.username || ""}
+                    onChange={(e) =>
+                      handleFieldChange("username", e.target.value)
+                    }
+                    placeholder="username"
+                    className="w-32 px-2 py-1 text-sm text-center border-b-2 border-dashed bg-transparent focus:outline-none"
+                    style={{
+                      borderColor: template.primaryColor,
+                      fontFamily: INPUT_FONT,
+                    }}
+                    required
+                  />
+                </div>
+              </div>
+
+              {/* エラーメッセージ */}
+              {error && (
+                <div className="text-sm text-center p-3 mb-4 rounded-xl bg-red-100 text-red-600 border-2 border-red-300">
+                  {error}
+                </div>
+              )}
+
+              {/* 保存ボタン */}
+              <button
+                type="submit"
+                disabled={saving}
+                className="w-full py-3 text-lg font-bold rounded-full shadow-lg disabled:opacity-50 text-white"
+                style={{
+                  backgroundColor: template.primaryColor,
+                  fontFamily: template.titleFont,
+                }}
+              >
+                {saving ? "ほぞんちゅう..." : "かんせい！"}
+              </button>
             </div>
-          )}
-
-          {/* 保存ボタン */}
-          <button
-            type="submit"
-            disabled={saving}
-            className="w-full py-3 text-lg font-bold rounded-full shadow-lg disabled:opacity-50 text-white"
-            style={{
-              backgroundColor: template.primaryColor,
-              fontFamily: template.titleFont,
-            }}
-          >
-            {saving ? "ほぞんちゅう..." : "かんせい！"}
-          </button>
-        </div>
-      </form>
-
+          </form>
         </div>
 
         {/* フッター */}
@@ -456,7 +460,7 @@ export default function ProfileEditPage() {
             <button
               type="button"
               onClick={handleLogout}
-              className="text-xs underline"
+              className="text-sm underline"
               style={{
                 color: template.textColor,
               }}
@@ -465,7 +469,7 @@ export default function ProfileEditPage() {
             </button>
             <Link
               href="/"
-              className="text-xs underline"
+              className="text-sm underline"
               style={{ color: template.textColor }}
             >
               TOPへ戻る

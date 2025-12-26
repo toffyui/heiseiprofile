@@ -148,97 +148,97 @@ export default function ProfilePage({ params }: ProfilePageProps) {
       <div className="flex flex-col min-h-full">
         <div className="flex-1">
           {/* キリ番演出 */}
-      {showKiriban && profile && (
-        <KiribanCelebration
-          count={visitorCount}
-          profileId={profile.id}
-          onClose={() => setShowKiriban(false)}
-        />
-      )}
+          {showKiriban && profile && (
+            <KiribanCelebration
+              count={visitorCount}
+              profileId={profile.id}
+              onClose={() => setShowKiriban(false)}
+            />
+          )}
 
-      {/* Welcome マーキー */}
-      <div className="overflow-hidden mb-4" style={textShadowStyle}>
-        <p
-          className="marquee text-lg font-bold whitespace-nowrap"
-          style={{ color: template.primaryColor, fontFamily: INPUT_FONT }}
-        >
-          &#9734;.&#12290;.:*&#12539;&#176; Welcome to {profile?.nickname}
-          &apos;s Profile (*&#180;&#9661;`*)&#9834;
-        </p>
-      </div>
-      {/* 基本情報カード */}
-      <BasicInfoSection
-        template={template}
-        profile={profile || {}}
-        editable={false}
-      />
-      <div className="px-6">
-        {/* Questions - 穴埋め */}
-        <QuestionsSection
-          template={template}
-          profile={profile || {}}
-          editable={false}
-        />
-
-        {/* 好きなもの♡コーナー */}
-        <FavoritesSection
-          template={template}
-          profile={profile || {}}
-          editable={false}
-        />
-
-        {/* もしも質問 */}
-        <IfSection
-          template={template}
-          profile={profile || {}}
-          editable={false}
-        />
-
-        {/* カウンター */}
-        <div className="mb-4">
-          <VisitorCounter count={visitorCount} />
-        </div>
-
-        {/* キリ番履歴 */}
-        {kiribanLogs.length > 0 && (
-          <div className="mb-4">
+          {/* Welcome マーキー */}
+          <div className="overflow-hidden mb-4" style={textShadowStyle}>
             <p
-              className="text-center font-bold text-sm mb-3"
-              style={{
-                color: template.primaryColor,
-                fontFamily: template.titleFont,
-              }}
+              className="marquee text-lg font-bold whitespace-nowrap"
+              style={{ color: template.primaryColor, fontFamily: INPUT_FONT }}
             >
-              &#127942; キリ番ゲッター &#127942;
+              &#9734;.&#12290;.:*&#12539;&#176; Welcome to {profile?.nickname}
+              &apos;s Profile (*&#180;&#9661;`*)&#9834;
             </p>
-            <div className="space-y-2">
-              {kiribanLogs.map((log) => (
-                <div
-                  key={log.id}
-                  className="flex justify-between items-center py-2 border-b border-dashed"
-                  style={{ borderColor: `${template.primaryColor}30` }}
-                >
-                  <span
-                    className="text-xs px-2 py-1 rounded-full"
-                    style={{
-                      backgroundColor: template.secondaryColor,
-                      color: template.textColor,
-                    }}
-                  >
-                    {log.visitor_number}人目
-                  </span>
-                  <span
-                    className="text-sm font-bold"
-                    style={{ fontFamily: INPUT_FONT }}
-                  >
-                    {log.visitor_name || "名無しさん"}
-                  </span>
-                </div>
-              ))}
-            </div>
           </div>
-        )}
-        </div>
+          {/* 基本情報カード */}
+          <BasicInfoSection
+            template={template}
+            profile={profile || {}}
+            editable={false}
+          />
+          <div className="px-6">
+            {/* Questions - 穴埋め */}
+            <QuestionsSection
+              template={template}
+              profile={profile || {}}
+              editable={false}
+            />
+
+            {/* 好きなもの♡コーナー */}
+            <FavoritesSection
+              template={template}
+              profile={profile || {}}
+              editable={false}
+            />
+
+            {/* もしも質問 */}
+            <IfSection
+              template={template}
+              profile={profile || {}}
+              editable={false}
+            />
+
+            {/* カウンター */}
+            <div className="mb-4">
+              <VisitorCounter count={visitorCount} />
+            </div>
+
+            {/* キリ番履歴 */}
+            {kiribanLogs.length > 0 && (
+              <div className="mb-4">
+                <p
+                  className="text-center font-bold text-sm mb-3"
+                  style={{
+                    color: template.primaryColor,
+                    fontFamily: template.titleFont,
+                  }}
+                >
+                  &#127942; キリ番ゲッター &#127942;
+                </p>
+                <div className="space-y-2">
+                  {kiribanLogs.map((log) => (
+                    <div
+                      key={log.id}
+                      className="flex justify-between items-center py-2 border-b border-dashed"
+                      style={{ borderColor: `${template.primaryColor}30` }}
+                    >
+                      <span
+                        className="text-sm px-2 py-1 rounded-full"
+                        style={{
+                          backgroundColor: template.secondaryColor,
+                          color: template.textColor,
+                        }}
+                      >
+                        {log.visitor_number}人目
+                      </span>
+                      <span
+                        className="text-sm font-bold"
+                        style={{ fontFamily: INPUT_FONT }}
+                      >
+                        {log.visitor_name || "名無しさん"}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* フッター */}
@@ -268,8 +268,11 @@ export default function ProfilePage({ params }: ProfilePageProps) {
             </button>
           </div>
           <p
-            className="text-xs mb-2"
-            style={{ color: template.textColor, fontFamily: template.titleFont }}
+            className="text-sm mb-2"
+            style={{
+              color: template.textColor,
+              fontFamily: template.titleFont,
+            }}
           >
             ♡ 平成プロフィール ♡
           </p>

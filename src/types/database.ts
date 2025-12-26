@@ -17,6 +17,7 @@ export interface Template {
   primaryColor: string;
   secondaryColor: string;
   textColor: string;
+  inputTextColor: string;
   // フォント
   titleFont: string;
 }
@@ -48,6 +49,7 @@ export const TEMPLATES: Template[] = [
     primaryColor: "#D269E6",
     secondaryColor: "#FFDC49",
     textColor: "#4a4a4a",
+    inputTextColor: "#4a4a4a",
     titleFont: '"Zen Maru Gothic", "Klee One", "Zen Kurenaido", sans-serif',
   },
   {
@@ -75,6 +77,7 @@ export const TEMPLATES: Template[] = [
     primaryColor: "#F3B15B",
     secondaryColor: "#8E5036",
     textColor: "#8E5036",
+    inputTextColor: "#8E5036",
     titleFont: '"Zen Maru Gothic", "Klee One", "Zen Kurenaido", sans-serif',
   },
   {
@@ -102,6 +105,7 @@ export const TEMPLATES: Template[] = [
     primaryColor: "#FF69B4",
     secondaryColor: "#FFD700",
     textColor: "#FFFFFF",
+    inputTextColor: "#4a4a4a",
     titleFont: '"Zen Maru Gothic", "Klee One", "Zen Kurenaido", sans-serif',
   },
 ];
@@ -110,7 +114,7 @@ export const TEMPLATES: Template[] = [
 export const DEFAULT_TEMPLATE = TEMPLATES[0];
 
 // 入力用フォント（平成女児フォント固定）
-export const INPUT_FONT = '"HeiseiJyoji", "Klee One", "Zen Kurenaido", cursive';
+export const INPUT_FONT = '"Miyu", "Klee One", "Zen Kurenaido", cursive';
 
 // 表示用丸文字フォント
 export const DISPLAY_FONT = '"Klee One", "Zen Kurenaido", cursive';
