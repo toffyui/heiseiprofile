@@ -5,9 +5,6 @@ import BackgroundPattern from "@/components/BackgroundPattern";
 export const metadata: Metadata = {
   title: "平成ぷろふぃーる",
   description: "平成時代の懐かしﾌﾟﾛﾌ帳を簡単に作っちゃお★",
-  icons: {
-    icon: "/favicon.png",
-  },
   openGraph: {
     title: "平成ぷろふぃーる",
     description: "平成時代の懐かしﾌﾟﾛﾌ帳を簡単に作っちゃお★",
